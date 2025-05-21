@@ -1,9 +1,9 @@
 //
 //  CacheManager.swift
-//  Revolutic
+//  WeatherApp
 //
-//  Created by Muhammad Asher Azeem on 5/20/25.
-//  Copyright © 2025 Revolutic. All rights reserved.
+//  Created by Revolutic on 20/05/2025.
+//  Copyright © 2025 Revolutic LLC. All rights reserved.
 //
 
 import Foundation
@@ -19,7 +19,7 @@ class CacheManager {
             let encodedData = try JSONEncoder().encode(data)
             userDefaults.set(encodedData, forKey: "WeatherForcast_\(cityName)")
         } catch {
-            print("Error encoding WeatherForcast data: \(error.localizedDescription)")
+            log("Error encoding WeatherForcast data: \(error.localizedDescription)", tag: "CacheManager")
         }
     }
     
@@ -29,7 +29,7 @@ class CacheManager {
                 let decodedData = try JSONDecoder().decode([WeekWeatherInfo].self, from: encodedData)
                 return decodedData
             } catch {
-                print("Error decoding WeatherForcast data: \(error.localizedDescription)")
+                log("Error encoding WeatherForcast data: \(error.localizedDescription)", tag: "CacheManager")
             }
         }
         return nil
@@ -40,7 +40,7 @@ class CacheManager {
             let encodedData = try JSONEncoder().encode(data)
             userDefaults.set(encodedData, forKey: "CityWeather_\(cityName)")
         } catch {
-            print("Error encoding CityWeather data: \(error.localizedDescription)")
+            log("Error encoding CityWeather data: \(error.localizedDescription)", tag: "CacheManager")
         }
     }
     
@@ -50,7 +50,7 @@ class CacheManager {
                 let decodedData = try JSONDecoder().decode(WeatherData.self, from: encodedData)
                 return decodedData
             } catch {
-                print("Error decoding CityWeather data: \(error.localizedDescription)")
+                log("Error decoding CityWeather data: \(error.localizedDescription)", tag: "CacheManager")
             }
         }
         return nil
